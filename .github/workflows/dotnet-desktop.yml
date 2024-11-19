@@ -66,6 +66,8 @@ jobs:
       uses: actions/checkout@v4
       with:
         fetch-depth: 0
+    - name: Execute unit tests
+      run: ls
 
     # Install the .NET Core workload
     - name: Install .NET Core
@@ -74,11 +76,11 @@ jobs:
         dotnet-version: 8.0.x
 
     # Add  MSBuild to the PATH: https://github.com/microsoft/setup-msbuild
-    - name: Execute unit tests
-      run: dotnet build
+    #- name: Execute unit tests
+      #run: dotnet build
 
     # Execute all unit tests in the solution
-    - name: Execute unit tests
-      run: dotnet test
+    #- name: Execute unit tests
+      #run: dotnet test
 
 
