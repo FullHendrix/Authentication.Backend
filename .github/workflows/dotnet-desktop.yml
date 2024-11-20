@@ -73,11 +73,11 @@ jobs:
       with:
         fetch-depth: 0
 
-    - name: List folder
-      run: ls
+    - name: Create folfer
+      run: mkdir publish
 
     - name: Publish
-      run: dotnet publish ./Intelica.Authentication.Backend/Intelica.Authentication.API/Intelica.Authentication.API.csproj --framework net8.0 -c Release -o /app/publish
+      run: dotnet publish ./Intelica.Authentication.Backend/Intelica.Authentication.API/Intelica.Authentication.API.csproj --framework net8.0 -c Release -o ./publish
 
     - name: List folder
       run: cd /app/publish
