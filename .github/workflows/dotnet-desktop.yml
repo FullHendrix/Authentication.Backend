@@ -62,6 +62,24 @@ jobs:
       Wap_Project_Path: your-wap-project-path                   # Replace with the path to your Wap project, i.e. MyWpf.App.Package\MyWpfApp.Package.wapproj.
 
     steps:
+    # Install the .NET Core workload
+    - name: Install .NET Core
+      uses: actions/setup-dotnet@v4
+      with:
+       dotnet-version: 8.0.x
+
+    - name: List folder
+      run: ls
+
+    - name: Publish
+      run: dotnet publish ./Intelica.Authentication.API/Intelica.Authentication.API.csproj --framework net8.0 -c Release -o /app/publish
+
+    - name: List folder
+      run: cd /app/publish
+
+    - name: List folder
+      run: ls
+      
     - name: Checkout
       uses: actions/checkout@v4
       with:
@@ -72,8 +90,7 @@ jobs:
     - name: Set up Docker Buildx
       uses: docker/setup-buildx-action@v3
       
-    - name: List folder
-      run: ls
+
 
     - name: Docker Login
       # You may pin to the exact commit or the version.
@@ -99,11 +116,8 @@ jobs:
         push: true
         # Generate SBOM attestation for the build (shorthand for --attest=type=sbom)        
         tags: fullhendrix/authentication.backend:latest
-    # Install the .NET Core workload
-    #- name: Install .NET Core
-     # uses: actions/setup-dotnet@v4
-     # with:
-    #    dotnet-version: 8.0.x
+    
+    
 
     # Add  MSBuild to the PATH: https://github.com/microsoft/setup-msbuild
     #- name: Execute unit tests
