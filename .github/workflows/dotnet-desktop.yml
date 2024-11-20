@@ -77,7 +77,7 @@ jobs:
       run: ls
 
     - name: Publish
-      run: dotnet publish ./Intelica.Authentication.API/Intelica.Authentication.API.csproj --framework net8.0 -c Release -o /app/publish
+      run: dotnet publish ./Intelica.Authentication.Backend/Intelica.Authentication.API/Intelica.Authentication.API.csproj --framework net8.0 -c Release -o /app/publish
 
     - name: List folder
       run: cd /app/publish
