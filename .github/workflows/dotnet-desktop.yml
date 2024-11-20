@@ -80,7 +80,7 @@ jobs:
       run: dotnet publish ./Intelica.Authentication.Backend/Intelica.Authentication.API/Intelica.Authentication.API.csproj --framework net8.0 -c Release -o ./publish
 
     - name: List folder
-      run: cd /app/publish
+      run: cd ./publish
 
     - name: List folder
       run: ls
