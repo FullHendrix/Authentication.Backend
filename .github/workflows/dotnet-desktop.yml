@@ -98,7 +98,7 @@ jobs:
         # Push is a shorthand for --output=type=registry
         push: true
         # Generate SBOM attestation for the build (shorthand for --attest=type=sbom)        
-        tags: fullhendrix/Authentication.Backend:latest
+        tags: fullhendrix/authentication.backend:latest
     # Install the .NET Core workload
     #- name: Install .NET Core
      # uses: actions/setup-dotnet@v4
