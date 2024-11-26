@@ -9,7 +9,7 @@ namespace Intelica.Authentication.API.Common.Encriptation
         {
             var publicKeyBytes = Convert.FromBase64String(publicKey);
             var textBytes = Encoding.ASCII.GetBytes(value);
-            RSACryptoServiceProvider RsaCsp = new();
+            RSACryptoServiceProvider RsaCsp = new(2048);
             RsaCsp.ImportSubjectPublicKeyInfo(publicKeyBytes, out _);
             byte[] encryptedData = RsaCsp.Encrypt(textBytes, true);
             var encriptedText = Convert.ToBase64String(encryptedData);
@@ -18,7 +18,7 @@ namespace Intelica.Authentication.API.Common.Encriptation
         public string Decript(string privateKey, string value)
         {
             var privateKeyBytes = Convert.FromBase64String(privateKey);
-            using var rsa = RSA.Create();
+            using var rsa = RSA.Create(2048);
             rsa.ImportPkcs8PrivateKey(privateKeyBytes, out _);
             var encryptedTextBytes = Convert.FromBase64String(value);
             var decryptedTextBytes = rsa.Decrypt(encryptedTextBytes, RSAEncryptionPadding.Pkcs1);
