@@ -8,11 +8,11 @@ namespace Intelica.Authentication.API.Common.Encriptation
         public string Encript(string publicKey, string value)
         {
             var publicKeyBytes = Convert.FromBase64String(publicKey);
-            using var rsa = RSA.Create();
-            rsa.ImportSubjectPublicKeyInfo(publicKeyBytes, out _);
             var textBytes = Encoding.ASCII.GetBytes(value);
-            var encriptedTextBytes = rsa.Encrypt(textBytes, RSAEncryptionPadding.Pkcs1);
-            var encriptedText = Convert.ToBase64String(encriptedTextBytes);
+            RSACryptoServiceProvider RsaCsp = new();
+            RsaCsp.ImportSubjectPublicKeyInfo(publicKeyBytes, out _);
+            byte[] encryptedData = RsaCsp.Encrypt(textBytes, true);
+            var encriptedText = Convert.ToBase64String(encryptedData);
             return encriptedText;
         }
         public string Decript(string privateKey, string value)
